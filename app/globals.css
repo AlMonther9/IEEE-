@@ -3,13 +3,35 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Custom Colors */
+  --color-primary-blue: #1C4ED8;
+  --color-primary-yellow: #FBBF24;
+
+  /* Custom Gradients */
+  --bg-gradient-blue-cta: linear-gradient(to right, #1C4ED8, #012DC5);
+  --bg-gradient-yellow-cta: linear-gradient(to right, #FDC700, #F0B100);
+  --bg-gradient-header: linear-gradient(to right, #2537F3, #8690F8);
+  --bg-gradient-main: linear-gradient(to bottom, #030B22, #02040A);
+  --bg-gradient-secondary: linear-gradient(to bottom, #02040A, #061231);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-jakarta), var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono);
+
+  /* Extend Colors */
+  --color-primary-blue: var(--color-primary-blue);
+  --color-primary-yellow: var(--color-primary-yellow);
+
+  /* Extend Background Images (Gradients) */
+  --background-image-gradient-blue-cta: var(--bg-gradient-blue-cta);
+  --background-image-gradient-yellow-cta: var(--bg-gradient-yellow-cta);
+  --background-image-gradient-header: var(--bg-gradient-header);
+  --background-image-gradient-main: var(--bg-gradient-main);
+  --background-image-gradient-secondary: var(--bg-gradient-secondary);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +44,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
