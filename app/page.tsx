@@ -1,3 +1,4 @@
+import Sponsors from "./Components/Sponsors";
 export default function Home() {
   return (
     <div className="min-h-screen p-8 bg-gray-50 dark:bg-gray-900 font-sans">
@@ -80,8 +81,12 @@ export default function Home() {
             </div>
 
           </div>
+          <Sponsors />
+
         </section>
       </div>
     </div>
+    
+
   );
 }
