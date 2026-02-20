@@ -11,7 +11,7 @@
   /* Custom Gradients */
   --bg-gradient-blue-cta: linear-gradient(to right, #1C4ED8, #012DC5);
   --bg-gradient-yellow-cta: linear-gradient(to right, #FDC700, #F0B100);
-  --bg-gradient-header: linear-gradient(to right, #2537F3, #8690F8);
+  --bg-gradient-header: linear-gradient(to right, #2537F3, #8690F8 65%);
   --bg-gradient-main: linear-gradient(to bottom, #030B22, #02040A);
   --bg-gradient-secondary: linear-gradient(to bottom, #02040A, #061231);
 }
@@ -46,3 +46,25 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+<<<<<<< Updated upstream
+=======
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+>>>>>>> Stashed changes
