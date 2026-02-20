@@ -46,10 +46,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
-<<<<<<< Updated upstream
-=======
 
-@keyframes scroll {
+<<<<<<< Updated upstream=======@keyframes scroll {
   0% {
     transform: translateX(0);
   }
@@ -67,4 +65,5 @@ body {
 .animate-scroll:hover {
   animation-play-state: paused;
 }
->>>>>>> Stashed changes
+
+>>>>>>>Stashed changes

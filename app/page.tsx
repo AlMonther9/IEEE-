@@ -1,3 +1,4 @@
+import Sponsors from "./Components/Sponsors";
 export default function Home() {
   return (
     <div className="min-h-screen p-8 bg-gray-50 dark:bg-gray-900 font-sans">
@@ -11,7 +12,7 @@ export default function Home() {
           <h2 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-300">Solid Colors</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex items-center space-x-4">
-              <div className="w-24 h-24 rounded-lg shadow-md bg-primary-blue flex items-center justify-center text-white font-medium text-xs">
+              <div className="w-24 h-24 roundedafgafgd-lg shadow-md bg-primary-blue flex items-center justify-center text-white font-medium text-xs">
                 #1C4ED8
               </div>
               <div>
@@ -80,8 +81,12 @@ export default function Home() {
             </div>
 
           </div>
+          <Sponsors />
+
         </section>
       </div>
     </div>
+    
+
   );
 }
