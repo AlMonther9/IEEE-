@@ -1,7 +1,7 @@
-import Sponsors from "./Components/Sponsors";
+import Sponsors from "@/components/landing/Sponsors";
 export default function Home() {
   return (
-    <div className="min-h-screen p-8 bg-gray-50 dark:bg-gray-900 font-sans">
+    <div className="min-h-screen p-8">
       <h1 className="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100">
         Design System Preview
       </h1>
