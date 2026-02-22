@@ -18,7 +18,7 @@ const cards = [
 ] as const;
 
 const frameClass =
-  "relative mx-auto w-full max-w-[1425px] overflow-hidden rounded-[10px] border border-[#0A97FF]/70 bg-gradient-main text-white";
+  "relative w-full overflow-hidden bg-gradient-main text-white";
 const contentClass =
   "relative z-10 mx-auto flex min-h-[826px] w-full max-w-[1140px] flex-col px-5 pb-12 pt-[108px] sm:px-8 sm:pt-[118px] lg:px-0";
 const cardClass =
@@ -26,7 +26,7 @@ const cardClass =
 
 export default function Hero() {
   return (
-    <section className="px-3 pb-14 pt-4 sm:px-6 lg:px-8">
+    <section className="-mt-24">
       <div className={frameClass}>
         <div className="absolute inset-0">
           <Image
@@ -34,20 +34,20 @@ export default function Hero() {
             alt=""
             fill
             priority
-            sizes="(min-width: 1425px) 1425px, 100vw"
+            sizes="100vw"
             className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#030B22]/90 via-[#02040A]/85 to-[#02040A]/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030B22]/40 via-[#02040A]/35 to-[#02040A]/55" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(28,78,216,0.23)_0%,rgba(3,11,34,0.8)_54%,rgba(2,4,10,0.95)_100%)]" />
-          <div className="absolute inset-0 bg-[#030B22] opacity-25 mix-blend-screen" />
+          <div className="absolute inset-0 opacity-25 mix-blend-screen" />
         </div>
 
         <div className={contentClass}>
-          <p className="mx-auto inline-flex rounded-md border border-primary-blue/40 bg-primary-blue/10 px-4 py-1 text-[13px] font-semibold text-primary-blue">
+          <p className="mx-auto inline-flex rounded-md border border-primary-blue/40 bg-linear-to-b from-[#02040A] to-[#061231] px-4 py-1 text-[13px] font-semibold text-primary-blue">
             Established 2020
           </p>
 
-          <h1 className="mx-auto mt-6 max-w-[760px] text-center text-[38px] font-extrabold leading-[1.05] tracking-[-0.02em] sm:text-[52px] lg:text-[68px]">
+          <h1 className="mx-auto mt-6 text-center text-4xl font-extrabold leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-6xl">
             Empowering Future{" "}
             <span className="bg-gradient-header bg-clip-text text-transparent">Engineers</span>
             <br className="hidden sm:block" />
