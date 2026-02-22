@@ -21,7 +21,7 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex items-center gap-2">
                 <Link href="/" className="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary transition-shadow">
-                    <Image src="/logo.svg" alt="IEEE SVU SB Logo" width={150} height={60} className="h-12 md:h-24 w-auto" />
+                    <Image src="logo.svg" alt="IEEE SVU SB Logo" width={150} height={60} className="h-12 md:h-24 w-auto" />
                 </Link>
             </div>
 
