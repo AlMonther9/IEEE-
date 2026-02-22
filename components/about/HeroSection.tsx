@@ -20,9 +20,9 @@ const cards = [
 const frameClass =
   "relative w-full overflow-hidden bg-gradient-main text-white";
 const contentClass =
-  "relative z-10 mx-auto flex min-h-[826px] w-full max-w-[1140px] flex-col px-5 pb-12 pt-[108px] sm:px-8 sm:pt-[118px] lg:px-0";
+  "relative z-10 mx-auto flex min-h-[826px] w-full max-w-6xl flex-col px-5 pb-12 pt-28 sm:px-8 sm:pt-32 lg:px-0";
 const cardClass =
-  "mx-auto h-auto min-h-[280px] w-full max-w-[546px] rounded-[10px] border border-[#8690F8]/20 bg-[rgba(134,144,248,0.05)] px-8 pb-8 pt-10 shadow-[0_0_35px_rgba(0,0,0,0.5)] backdrop-blur-[7px] lg:h-[334px]";
+  "mx-auto h-auto min-h-72 w-full max-w-xl rounded-xl border border-[#8690F8]/20 bg-[#8690F8]/5 px-8 pb-8 pt-10 shadow-2xl backdrop-blur-md lg:h-80";
 
 export default function Hero() {
   return (
@@ -43,32 +43,33 @@ export default function Hero() {
         </div>
 
         <div className={contentClass}>
-          <p className="mx-auto inline-flex rounded-md border border-primary-blue/40 bg-linear-to-b from-[#02040A] to-[#061231] px-4 py-1 text-[13px] font-semibold text-primary-blue">
+          <p className="mx-auto inline-flex rounded-md border border-primary-blue/40 bg-linear-to-b from-[#02040A] to-[#061231] px-4 py-1 text-sm font-semibold text-primary-blue">
             Established 2020
           </p>
 
-          <h1 className="mx-auto mt-6 text-center text-4xl font-extrabold leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-6xl">
-            Empowering Future{" "}
-            <span className="bg-gradient-header bg-clip-text text-transparent">Engineers</span>
-            <br className="hidden sm:block" />
+          <h1 className="mx-auto mt-6 text-center text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            Empowering Future
+            <span className="block my-1 bg-gradient-header bg-clip-text text-transparent sm:inline sm:my-0 sm:mx-3">
+              Engineers
+            </span>
             Through Technology
           </h1>
 
-          <p className="mx-auto mt-4 max-w-[650px] text-center text-[14px] leading-[1.62] text-white/80 sm:text-[15px] sm:leading-7">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-white/80 sm:text-base sm:leading-7">
             IEEE SVU Student Branch is a dynamic student community that promotes technical learning,
             innovation, and professional growth. The branch provides students with opportunities to
             develop technical skills, engage in hands-on projects, and connect with the global IEEE
             network, preparing them to become future technology leaders.
           </p>
 
-          <div className="mt-[74px] grid gap-6 lg:grid-cols-2 lg:gap-[26px]">
+          <div className="mt-20 grid gap-6 lg:grid-cols-2 lg:gap-7">
             {cards.map((card) => (
               <article key={card.title} className={cardClass}>
                 <div className="flex items-center gap-3">
-                  <Image src={card.icon} alt={card.iconAlt} width={58} height={58} className="h-[58px] w-[58px]" />
-                  <h2 className="text-[44px] font-semibold leading-none sm:text-[50px]">{card.title}</h2>
+                  <Image src={card.icon} alt={card.iconAlt} width={56} height={56} className="size-14" />
+                  <h2 className="text-5xl font-semibold leading-none sm:text-5xl">{card.title}</h2>
                 </div>
-                <p className="mt-5 text-[14px] leading-[1.6] text-white/78">{card.description}</p>
+                <p className="mt-5 text-sm leading-relaxed text-white/80">{card.description}</p>
               </article>
             ))}
           </div>

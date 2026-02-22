@@ -17,16 +17,16 @@ export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <nav aria-label="Main Navigation" className="fixed top-0 left-0 right-0 z-50 w-full px-6 md:px-12 py-3 flex items-center justify-between bg-gradient-secondary/90 backdrop-blur-md md:bg-transparent md:backdrop-blur-none border-b border-primary-blue/20 md:border-none">
+        <nav aria-label="Main Navigation" className="fixed top-0 left-0 right-0 z-50 w-full px-6 md:px-8 lg:px-12 py-3 md:py-4 lg:py-3 flex items-center justify-between bg-gradient-secondary/90 backdrop-blur-md md:bg-transparent md:backdrop-blur-none border-b border-primary-blue/20 md:border-none">
             {/* Logo */}
             <div className="flex items-center gap-2">
                 <Link href="/" className="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary transition-shadow">
-                    <Image src="logo.svg" alt="IEEE SVU SB Logo" width={150} height={60} className="h-12 md:h-24 w-auto" />
+                    <Image src="logo.svg" alt="IEEE SVU SB Logo" width={150} height={60} className="h-12 md:h-16 lg:h-24 w-auto" />
                 </Link>
             </div>
 
             {/* Centered Navigation Pill */}
-            <div className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 px-2 py-1.5 rounded-full border border-primary-blue/30 bg-gradient-secondary/80 backdrop-blur-md">
+            <div className="hidden md:flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2 px-1.5 lg:px-2 py-1 lg:py-1.5 rounded-full border border-primary-blue/30 bg-gradient-secondary/80 backdrop-blur-md">
                 {navLinks.map((link) => {
                     const isActive = pathname === link.href;
                     return (
@@ -34,7 +34,7 @@ export default function Navbar() {
                             key={link.label}
                             href={link.href}
                             aria-current={isActive ? "page" : undefined}
-                            className={`px-5 py-2 rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary ${isActive
+                            className={`px-3 md:px-4 lg:px-5 py-1.5 lg:py-2 rounded-full text-xs lg:text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary ${isActive
                                 ? "bg-gradient-blue-cta text-white shadow-lg"
                                 : "text-white/70 hover:text-white hover:bg-transparent"
                                 }`}
@@ -46,16 +46,16 @@ export default function Navbar() {
             </div>
 
             {/* Right side CTA buttons */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 lg:gap-4">
                 <Link
                     href="/join"
-                    className="px-6 py-2.5 rounded-full bg-gradient-blue-cta text-white text-sm font-medium hover:opacity-90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary"
+                    className="px-4 lg:px-6 py-2 lg:py-2.5 rounded-full bg-gradient-blue-cta text-white text-xs lg:text-sm font-medium hover:opacity-90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary"
                 >
                     Join Us
                 </Link>
                 <Link
                     href="/contact"
-                    className="px-6 py-2.5 rounded-full border border-primary-blue/60 text-white text-sm font-medium hover:bg-primary-blue/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary"
+                    className="px-4 lg:px-6 py-2 lg:py-2.5 rounded-full border border-primary-blue/60 text-white text-xs lg:text-sm font-medium hover:bg-primary-blue/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary"
                 >
                     Contact Us
                 </Link>
