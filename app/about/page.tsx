@@ -1,5 +1,5 @@
-import About from '@/components/About';
+import AboutUsCtaSection from '@/components/about/AboutCTASection';
 
 export default function AboutPage() {
-  return <About />;
+  return <AboutUsCtaSection />;
 }

@@ -1,14 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useMemo, useState, type JSX } from 'react';
-import { CommitteeDetailsDrawer } from '@/components/CommitteeDetailsDrawer';
+import { CommitteeDetailsDrawer } from '@/components/about/CommitteeDetailsDrawer';
 import {
     committeeDetails,
     committeeOrder,
     type CommitteeCode,
     type CommitteeDetail,
 } from '@/data/committeeDetails';
+import { Zap, } from 'lucide-react';
 
 type CommitteeCardProps = {
     code: CommitteeCode;
@@ -20,84 +22,16 @@ type CommitteeIconProps = {
     gradientId: string;
 };
 
-const ctaBackgroundImage: string =
-    "url('/6d3786ce125b35892905e540d700b1560b6e3b27.jpg')";
+
 
 function CommitteeIcon(props: CommitteeIconProps): JSX.Element {
-    const { gradientId } = props;
-    const gradientRef: string = `url(#${gradientId})`;
-
     return (
-        <svg viewBox="0 0 120 120" fill="none" aria-hidden>
-            <defs>
-                <linearGradient
-                    id={gradientId}
-                    x1="14"
-                    y1="104"
-                    x2="108"
-                    y2="18"
-                    gradientUnits="userSpaceOnUse"
-                >
-                    <stop offset="0%" stopColor="#6A43FF" />
-                    <stop offset="52%" stopColor="#3B74FF" />
-                    <stop offset="100%" stopColor="#2CC1FF" />
-                </linearGradient>
-            </defs>
-
-            <circle cx="60" cy="60" r="54" stroke={gradientRef} strokeWidth="2.4" />
-            <path d="M7 63h106" stroke={gradientRef} strokeWidth="2" />
-
-            <circle cx="33" cy="34" r="9.5" stroke={gradientRef} strokeWidth="2.4" />
-            <circle cx="60" cy="28.5" r="12.5" stroke={gradientRef} strokeWidth="2.4" />
-            <circle cx="87" cy="34" r="9.5" stroke={gradientRef} strokeWidth="2.4" />
-
-            <path
-                d="M19 58c2.3-9 9.7-14 18.5-14S53.7 49 56 58"
-                stroke={gradientRef}
-                strokeWidth="2.4"
-                strokeLinecap="round"
-            />
-            <path
-                d="M46 57.8c2.4-8 8.1-12.8 14-12.8s11.6 4.8 14 12.8"
-                stroke={gradientRef}
-                strokeWidth="2.4"
-                strokeLinecap="round"
-            />
-            <path
-                d="M64 58c2.4-9 9.2-14 18-14 8.8 0 16.3 5.1 18.6 14"
-                stroke={gradientRef}
-                strokeWidth="2.4"
-                strokeLinecap="round"
-            />
-
-            <path
-                d="m27 65 10 7-7.8 13.4-12-7.1L27 65Z"
-                stroke={gradientRef}
-                strokeWidth="2.4"
-                strokeLinejoin="round"
-            />
-            <path
-                d="m93 65-10 7 7.8 13.4 12-7.1L93 65Z"
-                stroke={gradientRef}
-                strokeWidth="2.4"
-                strokeLinejoin="round"
-            />
-
-            <path
-                d="m40 78 15-8.4c3.3-1.8 7.4-1.1 9.9 1.7l13.1 14.3-7.2 6.8-9.3-8.7-5.2 3"
-                stroke={gradientRef}
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-            <path
-                d="m34.5 84 20.1 16.8c2.5 2 6.2 1.8 8.4-.5l3.9-4"
-                stroke={gradientRef}
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-        </svg>
+        <Image
+            src="/about/committees.svg"
+            alt="Committee Icon"
+            fill
+            className="rounded-full object-cover"
+        />
     );
 }
 
@@ -105,7 +39,7 @@ function CommitteeCard(props: CommitteeCardProps): JSX.Element {
     const { code, detail, onSelect } = props;
     const gradientId: string = `committee-gradient-${code.toLowerCase()}`;
     const activeRingClassName: string =
-        'border-[#2F73FF] shadow-[0_0_10px_rgba(47,115,255,0.75),0_0_18px_rgba(47,115,255,0.45),0_0_8px_rgba(243,184,26,0.45)] group-hover:border-[#F3B81A] group-hover:shadow-[0_0_12px_rgba(243,184,26,0.85),0_0_22px_rgba(243,184,26,0.55)]';
+        'border-bluea shadow-[0_0_10px_rgba(47,115,255,0.75),0_0_18px_rgba(47,115,255,0.45),0_0_8px_rgba(243,184,26,0.45)] group-hover:border-[#F3B81A] group-hover:shadow-[0_0_12px_rgba(243,184,26,0.85),0_0_22px_rgba(243,184,26,0.55)]';
 
     return (
         <button
@@ -127,32 +61,40 @@ function CommitteeCard(props: CommitteeCardProps): JSX.Element {
 }
 
 function AboutUsCtaSection(): JSX.Element {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <section className="mx-auto w-full max-w-[1800px] px-5 pb-16 md:px-7 max-sm:px-3.5 max-sm:pb-12">
             <div className="relative mx-auto h-[520px] w-full max-w-[1440px] overflow-hidden rounded-[20px] border border-[#1A3B82]/60 bg-[#020F2F] sm:h-[620px] lg:h-[781px]">
-                <div
-                    className="absolute inset-0 scale-[1.03] bg-cover bg-center opacity-50 blur-[4px]"
-                    style={{ backgroundImage: ctaBackgroundImage }}
+                <Image
+                    src="/about/about-cta-section.jpg"
+                    alt="CTA Background"
+                    fill
+                    className={`absolute inset-0 scale-[1.03] object-cover object-center opacity-50 transition-all duration-300 ${isHovered ? 'blur-none' : 'blur-[4px]'}`}
+                    priority
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,13,40,0.56)_0%,rgba(2,10,32,0.66)_42%,rgba(2,8,24,0.76)_100%)]" />
+                <div className={`absolute inset-0 bg-black/50 transition-all duration-300 ${isHovered ? 'backdrop-blur-none' : 'backdrop-blur-xs'}`} />
 
                 <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 py-12 text-center sm:px-10 sm:py-16 lg:px-14 lg:py-20">
-                    <p className="max-w-3xl text-sm font-medium tracking-[0.02em] text-white/90 sm:text-base">
-                        Join a community of innovation, leadership, and impact.
-                    </p>
 
                     <h2 className="mt-4 max-w-[860px] text-[30px] font-semibold leading-[1.18] text-white sm:text-[40px] lg:text-[56px]">
                         Join the Network.
-                        <span className="block bg-gradient-to-r from-[#2FA1FF] via-[#6A88FF] to-[#2F73FF] bg-clip-text text-transparent">
+                        <span className="block bg-gradient-header bg-clip-text text-transparent">
                             Be Part of the Architecture
                         </span>
                     </h2>
 
+                    <p className="max-w-3xl text-sm mt-4 tracking-[0.02em] text-white/60 sm:text-base">
+                        Join a community  of innovation, leaders, and dreamers. Your journey
+                        into the future of engineering starts with a single click.                     </p>
                     <Link
                         href="/registration"
-                        className="mt-8 inline-flex h-[58px] items-center justify-center rounded-[12px] bg-[linear-gradient(90deg,#FDC700_0%,#F0B100_100%)] px-8 text-[16px] font-semibold text-[#111827] shadow-[0_10px_24px_rgba(240,177,0,0.35)] transition hover:scale-[1.02] hover:brightness-105"
+                        className="mt-8 gap-3 inline-flex h-12 items-center justify-center rounded-2xl bg-gradient-yellow-cta px-8 text-[16px] font-semibold text-[#111827] shadow-md transition hover:scale-[1.02] hover:brightness-105"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
                     >
                         JOIN THE TEAM
+                        <Zap size={20} />
                     </Link>
                 </div>
             </div>
