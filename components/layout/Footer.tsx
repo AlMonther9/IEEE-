@@ -144,7 +144,7 @@ export default function Footer() {
                 className="relative z-50 mt-4 sm:mt-6 flex items-center justify-center w-full h-16 sm:h-28 md:h-36 lg:h-44"
                 aria-hidden="true"
             >
-                <div className="sm:w-full h-full pointer-events-auto">
+                <div className="md:w-full h-full pointer-events-auto">
                     <TextHoverEffect text="IEEESVU SB" />
                 </div>
             </div>
