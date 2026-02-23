@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, KeyRound, Mail, Send } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -43,7 +44,7 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-gradient-main px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
+    <section className="relative -mt-24 isolate min-h-screen overflow-hidden bg-gradient-main px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-8 top-8 h-72 w-72 rounded-full bg-primary-blue/20 blur-3xl" />
         <div className="absolute bottom-8 right-8 h-72 w-72 rounded-full bg-primary-yellow/10 blur-3xl" />
@@ -69,7 +70,7 @@ export default function ResetPasswordPage() {
         <div className="w-full max-w-md">
           <Link
             href="/login"
-            className="mb-7 inline-flex items-center gap-2 text-lg text-white transition hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+            className="mb-7 inline-flex items-center gap-2 text-sm text-white transition hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
           >
             <ArrowLeft className="h-5 w-5" />
             Back to Login
@@ -79,42 +80,36 @@ export default function ResetPasswordPage() {
             <span className="mx-auto mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-blue-cta text-white shadow-lg sm:h-20 sm:w-20">
               <KeyRound className="h-8 w-8" />
             </span>
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
               Reset Password
             </h1>
-            <p className="mt-3 text-lg text-slate-300 sm:text-xl">
+            <p className="mt-3 text-sm text-slate-300 sm:text-base">
               Enter your email and we&apos;ll send you a link to reset your password
             </p>
           </div>
 
           <div className="rounded-3xl border border-white/30 bg-white/5 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
-            <form onSubmit={handleSubmit} noValidate>
+            <form onSubmit={handleSubmit} noValidate className="space-y-4">
               <div>
                 <label htmlFor="email" className="sr-only">
                   Email Address
                 </label>
-                <div
-                  className={`mt-2 flex h-14 items-center gap-3 rounded-2xl border bg-gradient-input px-4 transition focus-within:border-primary-blue/60 focus-within:ring-1 focus-within:ring-primary-blue/30 ${
-                    shouldShowError && emailError ? "border-red-400/90" : "border-white/12"
-                  }`}
-                >
-                  <Mail className="h-5 w-5 shrink-0 text-primary-blue/70" />
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={email}
-                    onChange={(event) => {
-                      setSuccessMessage("");
-                      setEmail(event.target.value);
-                    }}
-                    onBlur={() => setTouched(true)}
-                    placeholder="Enter your email address"
-                    autoComplete="email"
-                    className="h-full w-full bg-transparent text-base text-white placeholder:text-slate-400 focus:outline-none"
-                    aria-invalid={Boolean(shouldShowError && emailError)}
-                  />
-                </div>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={email}
+                  onChange={(event) => {
+                    setSuccessMessage("");
+                    setEmail(event.target.value);
+                  }}
+                  onBlur={() => setTouched(true)}
+                  placeholder="Enter your email address"
+                  autoComplete="email"
+                  aria-invalid={Boolean(shouldShowError && emailError)}
+                  startIcon={<Mail className="h-5 w-5" />}
+                  className="mt-2"
+                />
                 {shouldShowError && emailError && (
                   <p className="mt-1.5 text-sm text-red-400">{emailError}</p>
                 )}
@@ -123,9 +118,9 @@ export default function ResetPasswordPage() {
               <button
                 type="submit"
                 disabled={!isValid}
-                className="mt-5 inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-gradient-yellow-cta px-6 text-xl font-bold text-slate-900 shadow-lg transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-65"
+                className="inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-gradient-yellow-cta px-6 text-base font-bold text-slate-900 shadow-lg transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-65"
               >
-                <Send className="h-6 w-6" />
+                <Send className="h-5 w-5" />
                 Send Reset Link
               </button>
 
