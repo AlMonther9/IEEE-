@@ -48,7 +48,7 @@ export default function Navbar() {
             {/* Right side CTA buttons */}
             <div className="hidden md:flex items-center gap-2 lg:gap-4">
                 <Link
-                    href="/join"
+                    href="/create-account"
                     className="px-4 lg:px-6 py-2 lg:py-2.5 rounded-full bg-gradient-blue-cta text-white text-xs lg:text-sm font-medium hover:opacity-90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-gradient-secondary"
                 >
                     Join Us
@@ -100,7 +100,7 @@ export default function Navbar() {
 
                         <div className="flex flex-col gap-4 mt-8">
                             <Link
-                                href="/join"
+                                href="/create-account"
                                 className="w-full text-center px-6 py-3 rounded-full bg-primary-blue text-white font-medium hover:opacity-90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1530]"
                             >
                                 Join Us

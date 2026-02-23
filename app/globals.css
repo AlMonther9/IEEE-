@@ -185,7 +185,7 @@ body {
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px #080f25 inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #182035 inset !important;
     -webkit-text-fill-color: white !important;
     transition: background-color 99999s ease-in-out 0s, color 99999s ease-in-out 0s;
   }
