@@ -1,5 +1,5 @@
 import Sponsors from "@/components/landing/Sponsors";
-import FAQ from "@/components/faq/Faq";
+import FAQ from "@/components/landing/Faq";
 export default function Home() {
   return (
     <div className="min-h-screen p-8">
