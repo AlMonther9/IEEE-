@@ -1,4 +1,5 @@
 import Sponsors from "@/components/landing/Sponsors";
+import FAQ from "@/components/faq/Faq";
 export default function Home() {
   return (
     <div className="min-h-screen p-8">
@@ -82,6 +83,7 @@ export default function Home() {
 
           </div>
           <Sponsors />
+          <FAQ />
 
         </section>
       </div>
