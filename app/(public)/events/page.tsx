@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import EventCard from '@/components/events/EventCard';
-// import FilterBar from '@/components/events/FilterBar';
+import FilterBar from '@/components/events/FilterBar';
 import {
   eventsData,
   type EventType,
@@ -53,7 +53,7 @@ export default function EventsPage() {
     <div
       className="-mt-24 min-h-screen bg-gradient-main"
     >
-      {/* Hero Section — starts behind the transparent navbar */}
+      {/* Hero Section */}
       <section className="flex flex-col items-center text-center h-[40vh] justify-center px-4">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight bg-gradient-events-title bg-clip-text text-transparent">
           Events & Activities
@@ -67,7 +67,7 @@ export default function EventsPage() {
       {/* Content Section */}
       <section className="max-w-500 -mt-16 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Filter Bar */}
-        {/* <FilterBar
+        <FilterBar
           activeCategory={activeCategory}
           onCategoryChange={(cat) => {
             setActiveCategory(cat);
@@ -88,7 +88,7 @@ export default function EventsPage() {
             setSelectedStatus(s);
             setVisibleCount(EVENTS_PER_PAGE);
           }}
-        /> */}
+        />
 
         {/* Event Cards Grid */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -105,16 +105,16 @@ export default function EventsPage() {
         )}
 
         {/* Load More Button */}
-        {hasMore && (
-          <div className="flex justify-center mt-14 mb-16">
-            <button
-              onClick={handleLoadMore}
-              className="px-6 py-4 border border-white rounded-lg text-white text-base font-medium bg-transparent hover:bg-white/10 transition-colors cursor-pointer"
-            >
-              Load More Events
-            </button>
-          </div>
-        )}
+          {hasMore && (
+            <div className="flex justify-center mt-14 mb-16">
+              <button
+                onClick={handleLoadMore}
+                className="px-6 py-4 border border-white rounded-lg text-white text-base font-medium bg-transparent hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                Load More Events
+              </button>
+            </div>
+          )}
 
         {/* Bottom spacing when no Load More */}
         {!hasMore && filteredEvents.length > 0 && <div className="pb-16" />}

@@ -33,6 +33,8 @@
     rgba(104, 106, 115, 0.8) 92.89%
   );
   --color-events-card: #0f1230;
+  --bg-gradient-dropdown-options: linear-gradient(180deg, #061231 0%, #02040A 100%);
+
   --shadow-events-card-hover: 0 0 0 1px rgba(251, 191, 36, 0.4),
     0 0 24px rgba(28, 78, 216, 0.25), 0 0 40px rgba(251, 191, 36, 0.12);
 
@@ -89,6 +91,7 @@
   --background-image-gradient-events: var(--bg-gradient-events);
   --background-image-gradient-events-title: var(--bg-gradient-events-title);
   --color-events-card: var(--color-events-card);
+  --background-image-gradient-dropdown-options: var(--bg-gradient-dropdown-options);
 
   /* shadcn theme tokens */
   --color-card: var(--card);
