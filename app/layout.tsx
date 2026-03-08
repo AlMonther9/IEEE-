@@ -35,10 +35,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
         className={`${jakarta.variable} ${jakarta.className} antialiased bg-gradient-main`}
       >
         <Navbar />
-        <main className="pt-24 min-h-[calc(100vh-80px)]">
+        <main className="min-h-screen pt-24">
           {children}
         </main>
         <Footer />
