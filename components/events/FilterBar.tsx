@@ -45,7 +45,7 @@ export default function FilterBar({
   onStatusChange,
 }: FilterBarProps) {
   return (
-    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 py-4 w-full">
+    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-4 sm:px-6 lg:px-8 md:px-12 py-4 w-full">
       <div className="flex items-center justify-center lg:justify-start gap-2">
         {categories.map((cat) => {
           const isActive = activeCategory === cat;
@@ -59,11 +59,10 @@ export default function FilterBar({
             <button
               key={cat}
               onClick={() => onCategoryChange(cat)}
-              className={`px-4 py-2.5 rounded-full text-[11.9px] leading-5 font-medium transition-all cursor-pointer ${
-                isActive
-                  ? 'bg-primary-blue shadow-[0_0_20px_-5px_rgba(28,78,216,0.5)] text-white'
-                  : 'text-white/60 hover:text-white/80'
-              }`}
+              className={`px-6 py-2.5 rounded-full text-[11.9px] leading-5 font-medium transition-all cursor-pointer ${isActive
+                ? 'bg-primary-blue shadow-[0_0_20px_-5px_rgba(28,78,216,0.5)] text-white'
+                : 'text-white/60 hover:text-white/80'
+                }`}
             >
               {label}
             </button>
