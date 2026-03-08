@@ -112,7 +112,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <form aria-label="Newsletter Subscription">
+                <form aria-label="Newsletter Subscription" className="max-w-xs">
                     <h3 className="text-xl sm:text-2xl font-semibold leading-tight mb-4 sm:mb-5">
                         Stay Updated
                     </h3>
