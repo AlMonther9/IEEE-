@@ -1,139 +1,124 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import EventCard from "@/components/events/EventCard";
-import { eventsData } from "@/components/data/Events";
+import { useState, useMemo } from 'react';
+import EventCard from '@/components/events/EventCard';
+import FilterBar from '@/components/events/FilterBar';
+import {
+  eventsData,
+  type EventType,
+  type EventStatus,
+  type Committee,
+} from '@/data/eventsData';
+
+type CategoryFilter = 'All' | EventType;
+
+const EVENTS_PER_PAGE = 8;
 
 export default function EventsPage() {
+  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCommittee, setSelectedCommittee] = useState<Committee | 'All'>(
+    'All',
+  );
+  const [selectedStatus, setSelectedStatus] = useState<EventStatus | 'All'>(
+    'All',
+  );
+  const [visibleCount, setVisibleCount] = useState(EVENTS_PER_PAGE);
 
-const [visible, setVisible] = useState(4);
-const [filter, setFilter] = useState("All");
-const [search, setSearch] = useState("");
-const [status, setStatus] = useState("All");
-const [committee, setCommittee] = useState("All");
-const filteredEvents = eventsData
-.filter((event) => filter === "All" || event.type === filter)
-.filter((event) =>
-event.title.toLowerCase().includes(search.toLowerCase())
-)
-.filter((event) => status === "All" || event.status === status)
-.filter((event) => committee === "All" || event.committee === committee);
+  const filteredEvents = useMemo(() => {
+    return eventsData.filter((event) => {
+      if (activeCategory !== 'All' && event.type !== activeCategory)
+        return false;
+      if (selectedCommittee !== 'All' && event.committee !== selectedCommittee)
+        return false;
+      if (selectedStatus !== 'All' && event.status !== selectedStatus)
+        return false;
+      if (
+        searchQuery &&
+        !event.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+        return false;
+      return true;
+    });
+  }, [activeCategory, selectedCommittee, selectedStatus, searchQuery]);
 
-return (
-<div className="relative overflow-hidden min-h-screen bg-[#020817]">
+  const visibleEvents = filteredEvents.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredEvents.length;
 
-{/* Header */}
-<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-32 pb-20 text-center">
-<h1 className="text-5xl font-bold text-white mb-6">
-Events & Activities
-</h1>
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + EVENTS_PER_PAGE);
+  };
 
-<p className="text-gray-400 text-lg max-w-2xl mx-auto">
-Join our workshops, competitions, and technical sessions.
-</p>
-</div>
+  return (
+    <div
+      className="-mt-24 min-h-screen bg-gradient-main"
+    >
+      {/* Hero Section */}
+      <section className="flex flex-col items-center text-center h-[40vh] justify-center px-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight bg-gradient-events-title bg-clip-text text-transparent">
+          Events & Activities
+        </h1>
+        <p className="mt-4 max-w-[650px] text-base leading-7 text-white/60">
+          Join our workshops, competitions, and technical sessions to level up
+          your skills and connect with the community.
+        </p>
+      </section>
 
+      {/* Content Section */}
+      <section className="max-w-500 -mt-16 mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Filter Bar */}
+        <FilterBar
+          activeCategory={activeCategory}
+          onCategoryChange={(cat) => {
+            setActiveCategory(cat);
+            setVisibleCount(EVENTS_PER_PAGE);
+          }}
+          searchQuery={searchQuery}
+          onSearchChange={(q) => {
+            setSearchQuery(q);
+            setVisibleCount(EVENTS_PER_PAGE);
+          }}
+          selectedCommittee={selectedCommittee}
+          onCommitteeChange={(c) => {
+            setSelectedCommittee(c);
+            setVisibleCount(EVENTS_PER_PAGE);
+          }}
+          selectedStatus={selectedStatus}
+          onStatusChange={(s) => {
+            setSelectedStatus(s);
+            setVisibleCount(EVENTS_PER_PAGE);
+          }}
+        />
 
-{/* Filters Row */}
-<div className="flex justify-between items-center max-w-7xl mx-auto px-6 mb-10 flex-wrap gap-4">
+        {/* Event Cards Grid */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {visibleEvents.map((event, idx) => (
+            <EventCard key={`${event.id}-${idx}`} event={event} />
+          ))}
+        </div>
 
-{/* Tabs */}
-<div className="flex flex-wrap gap-3 w-full">
+        {/* Empty State */}
+        {filteredEvents.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-20 text-white/50">
+            <p className="text-lg">No events found matching your filters.</p>
+          </div>
+        )}
 
-<button
-onClick={() => setFilter("All")}
-className={`px-4 py-2 rounded-full border transition ${
-filter === "All"
-? "bg-blue-600 text-white border-blue-600"
-: "border-gray-600 text-white hover:bg-blue-600"
-}`}
->
-All
-</button>
+        {/* Load More Button */}
+          {hasMore && (
+            <div className="flex justify-center mt-14 mb-16">
+              <button
+                onClick={handleLoadMore}
+                className="px-6 py-4 border border-white rounded-lg text-white text-base font-medium bg-transparent hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                Load More Events
+              </button>
+            </div>
+          )}
 
-<button
-onClick={() => setFilter("Workshop")}
-className={`px-4 py-2 rounded-full border transition ${
-filter === "Workshop"
-? "bg-blue-600 text-white border-blue-600"
-: "border-gray-600 text-white hover:bg-blue-600"
-}`}
->
-Workshops
-</button>
-
-<button
-onClick={() => setFilter("Competition")}
-className={`px-4 py-2 rounded-full border transition ${
-filter === "Competition"
-? "bg-blue-600 text-white border-blue-600"
-: "border-gray-600 text-white hover:bg-blue-600"
-}`}
->
-Competitions
-</button>
-
-</div>
-
-
-{/* Search + Status */}
-<div className="flex gap-3">
-
-<input
-type="text"
-placeholder="Search events..."
-value={search}
-onChange={(e) => setSearch(e.target.value)}
-className="px-4 py-2 rounded-lg bg-[#0c1836] text-white border border-gray-600"
-/>
-<select
-value={committee}
-onChange={(e) => setCommittee(e.target.value)}
-className="px-4 py-2 rounded-lg bg-[#0c1836] text-white border border-gray-600"
->
-<option value="All">Committee</option>
-<option value="Technical">Technical</option>
-<option value="Media">Media</option>
-<option value="HR">HR</option>
-<option value="Marketing">Marketing</option>
-</select>
-
-<select
-value={status}
-onChange={(e) => setStatus(e.target.value)}
-className="px-4 py-2 rounded-lg bg-[#0c1836] text-white border border-gray-600"
->
-<option value="All">Status</option>
-<option value="Upcoming">Upcoming</option>
-<option value="Ongoing">Ongoing</option>
-<option value="Past">Past</option>
-</select>
-
-</div>
-
-</div>
-
-
-{/* Cards */}
-<div className="max-w-7xl mx-auto px-6 pb-20 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-{filteredEvents.slice(0, visible).map((event) => (
-  <EventCard key={event.id} {...event} />
-))}
-</div>
-
-
-{/* Load More */}
-{visible < filteredEvents.length && (
-<div className="flex flex-wrap justify-center gap-4 mb-10">
-<button
-onClick={() => setVisible(visible + 4)}
-className="px-6 py-3 border border-gray-600 text-white rounded-lg hover:border-yellow-400 hover:text-yellow-400 transition"
->
-Load More Events
-</button>
-</div>
-)}
-
-</div>
-);
+        {/* Bottom spacing when no Load More */}
+        {!hasMore && filteredEvents.length > 0 && <div className="pb-16" />}
+      </section>
+    </div>
+  );
 }

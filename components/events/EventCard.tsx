@@ -1,90 +1,61 @@
-import Image from "next/image";
-import Link from "next/link";
-import {CalendarDays, MapPin, ArrowRight} from "lucide-react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Calendar, MapPin, ArrowRight } from 'lucide-react';
+import type { EventItem } from '@/data/eventsData';
 
-export interface EventCardProps {
-    id: string;
-    type: "Workshop" | "Competition" | "Event";
-    image: string;
-    title: string;
-    date: string;
-    location: string;
-    status?: string;
-}
+const badgeStyles: Record<string, string> = {
+  Workshop: 'bg-gradient-blue-cta text-white',
+  Competition: 'bg-gradient-yellow-cta text-black font-bold',
+};
 
-
-export default function EventCard({
-    id,
-    type,
-    image,
-    title,
-    date,
-    location,
-}: EventCardProps) {
-const badgeStyle =
-    type === "Workshop"
-    ? "bg-blue-600 text-white"
-    : type === "Competition"
-    ? "bg-yellow-400 text-black"
-    : "bg-gray-500 text-white";
-
-const glowStyle =
-    type === "Workshop"
-    ? "hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
-    : type === "Competition"
-    ? "hover:shadow-[0_0_30px_rgba(250,204,21,0.6)]"
-    : "";
-
-return (
-    <div
-    className={`group rounded-2xl overflow-hidden bg-[#061231] border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 ${glowStyle}`}
-    >
-      {/* Image Section */}
-    <div className="relative h-48 w-full">
+export default function EventCard({ event }: { event: EventItem }) {
+  return (
+    <div className="group flex flex-col bg-events-card rounded-xl overflow-hidden transition-shadow duration-300 hover:shadow-[var(--shadow-events-card-hover)]">
+      {/* Image */}
+      <div className="relative h-[175px] w-full overflow-hidden">
         <Image
-        src={image}
-        alt={title}
-        fill
-        className="object-cover"
+          src={event.image}
+          alt={event.title}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
-
         <span
-        className={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full ${badgeStyle}`}
+          className={`absolute top-3.5 left-3 px-3 py-0.5 rounded-full text-[10.2px] leading-4 font-semibold ${badgeStyles[event.type]}`}
         >
-        {type}
+          {event.type}
         </span>
-    </div>
+      </div>
 
       {/* Content */}
-    <div className="p-5 flex flex-col gap-3">
+      <div className="flex flex-col gap-4 p-5">
+        <h3 className="text-white font-bold text-[17px] leading-7 transition-colors duration-300 group-hover:text-primary-yellow">
+          {event.title}
+        </h3>
 
-<h3 className="text-white font-bold text-lg line-clamp-2">
-{title}
-</h3>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <Calendar className="w-3.5 h-3.5 text-primary-blue shrink-0" />
+            <span className="text-white/70 text-[11.9px] leading-5">
+              {event.date}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <MapPin className="w-3.5 h-3.5 text-primary-blue shrink-0" />
+            <span className="text-white/70 text-[11.9px] leading-5">
+              {event.location}
+            </span>
+          </div>
+        </div>
 
-<div className="flex flex-col gap-2 text-gray-400 text-sm">
-
-<div className="flex items-center gap-2">
-<CalendarDays size={16} />
-<span>{date}</span>
-</div>
-
-<div className="flex items-center gap-2">
-<MapPin size={16} />
-<span>{location}</span>
-</div>
-
-</div>
-
-<Link
-href={`/events/${id}`}
-className="mt-1 flex items-center gap-2 text-blue-500 hover:text-yellow-400 font-medium"
->
-View Details
-<ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-</Link>
-
-</div>
-</div>
-);
+        <Link
+          href={`/events/${event.id}`}
+          className="inline-flex items-center gap-2 text-primary-blue text-[11.9px] leading-5 font-medium transition-colors duration-300 group-hover:text-primary-yellow w-fit"
+        >
+          View Details
+          <ArrowRight className="w-3.5 h-3 transition-colors duration-300 group-hover:text-primary-yellow" />
+        </Link>
+      </div>
+    </div>
+  );
 }

@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -8,16 +8,35 @@
   --foreground: #171717;
 
   /* Custom Colors */
-  --color-primary-blue: #1C4ED8;
-  --color-primary-yellow: #FBBF24;
+  --color-primary-blue: #1c4ed8;
+  --color-primary-yellow: #fbbf24;
 
   /* Custom Gradients */
-  --bg-gradient-blue-cta: linear-gradient(to right, #1C4ED8, #012DC5);
-  --bg-gradient-yellow-cta: linear-gradient(to right, #FDC700, #F0B100);
-  --bg-gradient-header: linear-gradient(to right, #2537F3, #8690F8 65%);
-  --bg-gradient-main: linear-gradient(to bottom, #030B22, #02040A);
-  --bg-gradient-secondary: linear-gradient(to bottom, #02040A, #061231);
-  --bg-gradient-input: linear-gradient(to right, rgba(40, 52, 83, 0.92), rgba(28, 41, 73, 0.88));
+  --bg-gradient-blue-cta: linear-gradient(to right, #1c4ed8, #012dc5);
+  --bg-gradient-yellow-cta: linear-gradient(to right, #fdc700, #f0b100);
+  --bg-gradient-header: linear-gradient(to right, #2537f3, #8690f8 65%);
+  --bg-gradient-main: linear-gradient(to bottom, #030b22, #02040a);
+  --bg-gradient-events: linear-gradient(
+    174.85deg,
+    rgba(28, 78, 216, 0.04) -17.78%,
+    rgba(6, 18, 49, 0.2) 74.6%
+  );
+  --bg-gradient-secondary: linear-gradient(to bottom, #02040a, #061231);
+  --bg-gradient-input: linear-gradient(
+    to right,
+    rgba(40, 52, 83, 0.92),
+    rgba(28, 41, 73, 0.88)
+  );
+  --bg-gradient-events-title: linear-gradient(
+    90deg,
+    #ffffff 8.25%,
+    rgba(104, 106, 115, 0.8) 92.89%
+  );
+  --color-events-card: #0f1230;
+  --bg-gradient-dropdown-options: linear-gradient(180deg, #061231 0%, #02040A 100%);
+
+  --shadow-events-card-hover: 0 0 0 1px rgba(251, 191, 36, 0.4),
+    0 0 24px rgba(28, 78, 216, 0.25), 0 0 40px rgba(251, 191, 36, 0.12);
 
   /* shadcn variables */
   --radius: 0.625rem;
@@ -69,6 +88,10 @@
   --background-image-gradient-main: var(--bg-gradient-main);
   --background-image-gradient-secondary: var(--bg-gradient-secondary);
   --background-image-gradient-input: var(--bg-gradient-input);
+  --background-image-gradient-events: var(--bg-gradient-events);
+  --background-image-gradient-events-title: var(--bg-gradient-events-title);
+  --color-events-card: var(--color-events-card);
+  --background-image-gradient-dropdown-options: var(--bg-gradient-dropdown-options);
 
   /* shadcn theme tokens */
   --color-card: var(--card);
@@ -187,12 +210,14 @@ body {
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 1000px #182035 inset !important;
     -webkit-text-fill-color: white !important;
-    transition: background-color 99999s ease-in-out 0s, color 99999s ease-in-out 0s;
+    transition:
+      background-color 99999s ease-in-out 0s,
+      color 99999s ease-in-out 0s;
   }
 
   /* Hide native browser password reveal eye icons (Edge/Chrome) */
-  input[type="password"]::-ms-reveal,
-  input[type="password"]::-ms-clear {
+  input[type='password']::-ms-reveal,
+  input[type='password']::-ms-clear {
     display: none;
   }
 }
