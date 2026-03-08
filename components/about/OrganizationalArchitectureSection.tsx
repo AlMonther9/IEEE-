@@ -143,7 +143,7 @@ export default function OrganizationalArchitectureSection(): JSX.Element {
                   <li key={committeeCode} className="min-w-0 text-center">
                     <button
                       type="button"
-                      className="group flex w-full flex-col items-center border-0 bg-transparent p-0 text-white transition-transform duration-200 hover:scale-105"
+                      className="group cursor-pointer flex w-full flex-col items-center border-0 bg-transparent p-0 text-white transition-transform duration-200 hover:scale-105"
                       onClick={(): void => handleCommitteeOpen(committeeCode)}
                       aria-label={`Open ${committeeDetails[committeeCode].fullName} committee details`}
                     >
