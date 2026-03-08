@@ -16,6 +16,9 @@ const navLinks = [
 export default function Navbar() {
     const pathname = usePathname();
 
+    const isEventDetailsPage = /^\/events\/[^/]+$/.test(pathname);
+    if (isEventDetailsPage) return null;
+
     return (
         <nav aria-label="Main Navigation" className="fixed top-0 left-0 right-0 z-50 w-full px-6 md:px-8 lg:px-12 py-3 md:py-4 lg:py-3 flex items-center justify-between bg-gradient-secondary/90 backdrop-blur-md md:bg-transparent md:backdrop-blur-none border-b border-primary-blue/20 md:border-none">
             {/* Logo */}
