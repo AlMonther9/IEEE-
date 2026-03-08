@@ -15,12 +15,17 @@ export const TextHoverEffect = ({
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    return window.matchMedia("(max-width: 640px)").matches;
+  });
+  const isAutoMode = isMobile || automatic;
 
   // Detect mobile / touch devices
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 640px)");
-    setIsMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
@@ -28,10 +33,7 @@ export const TextHoverEffect = ({
 
   // Auto-animate on mobile: sweep the gradient across the text
   useEffect(() => {
-    if (!isMobile && !automatic) return;
-
-    // Activate the gradient colors
-    setHovered(true);
+    if (!isAutoMode) return;
 
     const keyframes = [
       { cx: "0%", cy: "50%" },
@@ -51,12 +53,12 @@ export const TextHoverEffect = ({
     }, 1200);
 
     return () => clearInterval(interval);
-  }, [isMobile, automatic]);
+  }, [isAutoMode]);
 
   // Update mask position from mouse cursor
   useEffect(() => {
-    if (isMobile) return;
-    if (svgRef.current && cursor.x !== null && cursor.y !== null) {
+    if (isAutoMode) return;
+    if (svgRef.current) {
       const svgRect = svgRef.current.getBoundingClientRect();
       const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
       const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
@@ -65,7 +67,7 @@ export const TextHoverEffect = ({
         cy: `${cyPercentage}%`,
       });
     }
-  }, [cursor, isMobile]);
+  }, [cursor, isAutoMode]);
 
   return (
     <svg
@@ -74,9 +76,9 @@ export const TextHoverEffect = ({
       height="100%"
       viewBox="0 0 500 100"
       xmlns="http://www.w3.org/2000/svg"
-      onMouseEnter={() => !isMobile && setHovered(true)}
-      onMouseLeave={() => !isMobile && setHovered(false)}
-      onMouseMove={(e) => !isMobile && setCursor({ x: e.clientX, y: e.clientY })}
+      onMouseEnter={() => !isAutoMode && setHovered(true)}
+      onMouseLeave={() => !isAutoMode && setHovered(false)}
+      onMouseMove={(e) => !isAutoMode && setCursor({ x: e.clientX, y: e.clientY })}
       className="select-none"
     >
       <defs>
@@ -87,7 +89,7 @@ export const TextHoverEffect = ({
           cy="50%"
           r="25%"
         >
-          {hovered && (
+          {(hovered || isAutoMode) && (
             <>
               <stop offset="0%" stopColor="#1E3A8A" />
               <stop offset="25%" stopColor="#1D4ED8" />
@@ -131,7 +133,7 @@ export const TextHoverEffect = ({
         className="font-[helvetica] text-7xl font-bold"
         fill="#0a1a3a"
         stroke="#1e3a6e"
-        style={{ opacity: hovered ? 0.7 : 0.4 }}
+        style={{ opacity: hovered || isAutoMode ? 0.7 : 0.4 }}
       >
         {text}
       </text>
