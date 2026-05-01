@@ -25,14 +25,6 @@ export const metadata: Metadata = {
     siteName: "IEEE SVU SB",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/logo.svg",
-        width: 512,
-        height: 512,
-        alt: "IEEE SVU Student Branch Logo",
-      },
-    ],
   },
 };
 
