@@ -17,13 +17,22 @@ export const metadata: Metadata = {
   description: "The official platform for the IEEE South Valley University Student Branch. Empowering future engineers through workshops, hackathons, and a thriving technical community.",
   keywords: ["IEEE", "SVU", "South Valley University", "Student Branch", "Engineering", "Technology", "Hackathon", "Egypt", "Qena"],
   authors: [{ name: "IEEE SVU SB Web Committee" }],
+  metadataBase: new URL("https://ieee-svu-sb.vercel.app"),
   openGraph: {
     title: "IEEE SVU SB | South Valley University",
     description: "Empowering future engineers through workshops, hackathons, and a thriving technical community.",
-    url: "https://ieeesvusb.com", // Update with our actual domain later
+    url: "https://ieee-svu-sb.vercel.app",
     siteName: "IEEE SVU SB",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/logo.svg",
+        width: 512,
+        height: 512,
+        alt: "IEEE SVU Student Branch Logo",
+      },
+    ],
   },
 };
 
