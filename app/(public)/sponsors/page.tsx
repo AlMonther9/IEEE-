@@ -96,22 +96,35 @@ export default function SponsorsPage() {
     return (
         <div className="bg-gradient-main -mt-24">
             {/* ── Hero Section ── */}
-            <section className="relative py-20 md:py-28 text-center overflow-hidden">
-                {/* Radial glow */}
-                <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                        background:
-                            "radial-gradient(ellipse 60% 40% at 50% 30%, rgba(28, 78, 216, 0.12) 0%, transparent 70%)",
-                    }}
-                />
+            <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 text-center overflow-hidden">
+                {/* Auth-style background decorations */}
+                <div className="pointer-events-none absolute inset-0">
+                    <div className="absolute left-8 top-8 h-72 w-72 rounded-full bg-primary-blue/20 blur-3xl" />
+                    <div className="absolute bottom-8 right-8 h-72 w-72 rounded-full bg-primary-yellow/10 blur-3xl" />
+                    <Image
+                        src="/Frame.svg"
+                        alt=""
+                        aria-hidden="true"
+                        width={173}
+                        height={173}
+                        className="absolute left-10 top-24 hidden opacity-75 lg:block"
+                    />
+                    <Image
+                        src="/Frame%20(1).svg"
+                        alt=""
+                        aria-hidden="true"
+                        width={162}
+                        height={162}
+                        className="absolute bottom-20 right-10 hidden opacity-80 lg:block"
+                    />
+                </div>
 
                 <div className="relative z-10 max-w-3xl mx-auto px-6">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary-yellow/40 bg-primary-yellow/10 mb-8">
                         <Handshake className="w-4 h-4 text-primary-yellow" />
                         <span className="text-primary-yellow text-xs font-semibold uppercase tracking-wider">
-                            Building Partnerships
+                            Building the Future Together
                         </span>
                     </div>
 
@@ -123,14 +136,14 @@ export default function SponsorsPage() {
                     </h1>
 
                     <p className="text-white/50 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-                        Our sponsors and affiliates are instrumental in empowering our student branch to
-                        make an impact in the tech community.
+                        Collaborating with industry leaders to empower future engineers and drive innovation
+                        in the tech community.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-blue-cta text-white font-semibold text-sm shadow-lg shadow-primary-blue/25 hover:shadow-primary-blue/40 hover:scale-105 transition-all duration-300"
+                            className="group inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-yellow-cta text-black font-semibold text-sm shadow-lg shadow-primary-yellow/25 hover:shadow-primary-yellow/40 hover:scale-105 transition-all duration-300"
                         >
                             <Handshake className="w-4 h-4" />
                             Become a Sponsor
@@ -261,7 +274,7 @@ export default function SponsorsPage() {
             {/* ── CTA Section ── */}
             <section className="py-16 md:py-20">
                 <div className="max-w-4xl mx-auto px-6">
-                    <div className="relative rounded-2xl border border-primary-blue/20 bg-gradient-to-br from-[#061231] to-[#030b22] p-10 md:p-14 overflow-hidden">
+                    <div className="relative rounded-2xl border border-primary-yellow/20 bg-gradient-to-br from-[#061231] to-[#030b22] p-10 md:p-14 overflow-hidden">
                         {/* Decorative glow */}
                         <div
                             className="absolute top-0 right-0 w-72 h-72 pointer-events-none"
@@ -276,25 +289,24 @@ export default function SponsorsPage() {
                                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                                     Interested in Collaborating with
                                     <br />
-                                    <span className="bg-gradient-header bg-clip-text text-transparent">
-                                        IEEE SVU SB?
-                                    </span>
+                                    IEEE SVU SB?
                                 </h3>
                                 <p className="text-white/40 text-sm max-w-md leading-relaxed">
-                                    Let&apos;s build something remarkable together. Reach out to our partnerships
-                                    team to explore opportunities and make an impact.
+                                    Let&apos;s discuss how we can create meaningful partnerships
+                                    that benefit your organization and our community of future engineers.
                                 </p>
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                                 <Link
                                     href="/contact"
-                                    className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-blue-cta text-white font-semibold text-sm shadow-lg shadow-primary-blue/25 hover:shadow-primary-blue/40 hover:scale-105 transition-all duration-300"
+                                    className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-yellow-cta text-black font-semibold text-sm shadow-lg shadow-primary-yellow/25 hover:shadow-primary-yellow/40 hover:scale-105 transition-all duration-300"
                                 >
-                                    Submit Inquiry
+                                    Submit Proposal
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                                 <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/40 transition-all duration-300">
+                                    <Download className="w-4 h-4" />
                                     Prospectus
                                 </button>
                             </div>
